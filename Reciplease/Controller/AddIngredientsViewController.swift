@@ -10,8 +10,12 @@ import UIKit
 
 class AddIngredientsViewController: UIViewController {
     
-    var ingredients: [String] = []
-    let segueId = "showRecipesList"
+    private var ingredients: [String] = []
+    static let segueId = "showRecipesList"
+    private let recipeService = RecipeService()
+    private var recipeSearchResult: RecipeSearchResult?
+    var recipes: [Recipes] = []
+    
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
@@ -32,9 +36,9 @@ class AddIngredientsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueId {
+        if segue.identifier == AddIngredientsViewController.segueId {
             let recipesVC = segue.destination as! RecipeListViewController
-            recipesVC.ingredients = ingredients
+            recipesVC.recipes = recipes
         }
     }
     
@@ -47,10 +51,36 @@ class AddIngredientsViewController: UIViewController {
     }
     
     @IBAction func searchButtonTaped(_ sender: Any) {
-        if !ingredients.isEmpty {
-            performSegue(withIdentifier: segueId, sender: self)
-        } else {
-           displayAlert(title: "Nope", message: "Sans ingrédients, pas de cuisine")
+        do {
+             try getRecipes()
+        } catch let error as RecipeSearchError {
+            displayAlert(title: error.errorDescription, message: error.failureReason)
+        } catch {
+            displayAlert(title: "Oups!", message: "Erreur inconnue")
+        }
+    }
+    
+    
+    func getRecipes() throws {
+        guard !ingredients.isEmpty else {
+            throw RecipeSearchError.noIngredients
+        }
+        toggleActivityIndicator(shown: true)
+        recipeService.getRecipes(ingredients: ingredients) { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else {return}
+                switch result {
+                case.success(let recipes):
+                    strongSelf.toggleActivityIndicator(shown: false)
+                    strongSelf.recipeSearchResult = recipes
+                    strongSelf.recipes = recipes.hits.map { $0.recipe }
+                    print(recipes.hits.count)
+                    strongSelf.performSegue(withIdentifier: AddIngredientsViewController.segueId, sender: nil)
+                    print("segue")
+                case .failure(let error):
+                    strongSelf.displayAlert(title: error.errorDescription, message: error.failureReason)
+                }
+            }
         }
     }
     

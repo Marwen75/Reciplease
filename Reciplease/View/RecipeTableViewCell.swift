@@ -17,7 +17,7 @@ class RecipeTableViewCell: UITableViewCell {
         @IBOutlet weak var yieldLabel: UILabel!
         
         func configure(title: String, ingredients: String, time: Int, yield: Int) {
-            
+            //recipeImageView.contentMode = .scaleAspectFill
             recipeTitle.text = title
             recipeIngredients.text = ingredients
             cookingTimeLabel.text = String(time)

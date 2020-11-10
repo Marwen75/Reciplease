@@ -19,6 +19,7 @@
 		C25E4EE9255924BE00A43439 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E4EE8255924BE00A43439 /* Extension+UIImageView.swift */; };
 		C25E4EEC2559514200A43439 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E4EEA2559514200A43439 /* RecipeTableViewCell.swift */; };
 		C25E4EED2559514200A43439 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25E4EEB2559514200A43439 /* RecipeTableViewCell.xib */; };
+		C25E4EEF255A835600A43439 /* RecipeSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E4EEE255A835600A43439 /* RecipeSearchError.swift */; };
 		C28E8C82254FF32500FDEE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C81254FF32500FDEE84 /* AppDelegate.swift */; };
 		C28E8C84254FF32500FDEE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C83254FF32500FDEE84 /* SceneDelegate.swift */; };
 		C28E8C89254FF32500FDEE84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E8C87254FF32500FDEE84 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		C28E8C91254FF32A00FDEE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E8C8F254FF32A00FDEE84 /* LaunchScreen.storyboard */; };
 		C28E8C9C254FF32B00FDEE84 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C9B254FF32B00FDEE84 /* RecipleaseTests.swift */; };
 		C28E8CA7254FF32B00FDEE84 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8CA6254FF32B00FDEE84 /* RecipleaseUITests.swift */; };
+		C2C617C9255AB037009CE7BB /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C617C8255AB037009CE7BB /* HttpClient.swift */; };
 		F2716ED2A8462A3EB246B7F2 /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630378570F790D54DA61274D /* Pods_Reciplease.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,7 @@
 		C25E4EE8255924BE00A43439 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		C25E4EEA2559514200A43439 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		C25E4EEB2559514200A43439 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
+		C25E4EEE255A835600A43439 /* RecipeSearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchError.swift; sourceTree = "<group>"; };
 		C28E8C7E254FF32500FDEE84 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28E8C81254FF32500FDEE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C28E8C83254FF32500FDEE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		C28E8CA2254FF32B00FDEE84 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28E8CA6254FF32B00FDEE84 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		C28E8CA8254FF32B00FDEE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2C617C8255AB037009CE7BB /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		D981517459F573BCAFC65071 /* Pods-RecipleaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F95BFB0FB82C7721D45D5B48 /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +196,9 @@
 			children = (
 				C22BA04E2550253F005D9906 /* ApiKey.swift */,
 				C22BA0602557FB50005D9906 /* ApiError.swift */,
+				C25E4EEE255A835600A43439 /* RecipeSearchError.swift */,
 				C22BA050255025C4005D9906 /* RecipeService.swift */,
+				C2C617C8255AB037009CE7BB /* HttpClient.swift */,
 				C22BA05225503913005D9906 /* RecipeSearchResult.swift */,
 			);
 			path = Model;
@@ -298,7 +304,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = marwen;
 				TargetAttributes = {
 					C28E8C7D254FF32500FDEE84 = {
@@ -474,8 +480,10 @@
 				C22BA051255025C4005D9906 /* RecipeService.swift in Sources */,
 				C22BA06B2558491F005D9906 /* Extension+Viewcontroller.swift in Sources */,
 				C25E4EEC2559514200A43439 /* RecipeTableViewCell.swift in Sources */,
+				C2C617C9255AB037009CE7BB /* HttpClient.swift in Sources */,
 				C22BA063255802E9005D9906 /* RecipeListViewController.swift in Sources */,
 				C22BA05325503913005D9906 /* RecipeSearchResult.swift in Sources */,
+				C25E4EEF255A835600A43439 /* RecipeSearchError.swift in Sources */,
 				C22BA04D25501E8B005D9906 /* AddIngredientsViewController.swift in Sources */,
 				C28E8C82254FF32500FDEE84 /* AppDelegate.swift in Sources */,
 				C22BA0612557FB50005D9906 /* ApiError.swift in Sources */,
@@ -562,6 +570,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -586,7 +595,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -622,6 +631,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -640,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

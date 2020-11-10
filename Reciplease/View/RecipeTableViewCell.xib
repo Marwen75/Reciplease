@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="435" height="186"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food-1209503_1920" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-4M-le9">
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food-1209503_1920" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-4M-le9">
                         <rect key="frame" x="0.0" y="0.0" width="435" height="186"/>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HzR-nW-Rbq">
