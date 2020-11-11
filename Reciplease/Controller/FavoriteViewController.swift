@@ -1,46 +1,35 @@
 //
-//  RecipeListViewController.swift
+//  FavoriteViewController.swift
 //  Reciplease
 //
-//  Created by Marwen Haouacine on 08/11/2020.
+//  Created by Marwen Haouacine on 11/11/2020.
 //  Copyright © 2020 marwen. All rights reserved.
 //
 
 import UIKit
-class RecipeListViewController: UIViewController {
+
+class FavoriteViewController: UIViewController {
     
-    static let segueId = "recipeToDetail"
     var recipes: [Recipes] = []
     var recipeToDisplay: Recipes?
     
-    @IBOutlet weak var recipeTableView: UITableView!
+    @IBOutlet weak var favoriteTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == RecipeListViewController.segueId {
-            let recipesVC = segue.destination as! DetailViewController
-            recipesVC.recipeToDisplay = recipeToDisplay
-        }
-    }
-    
-    private func configureTableView() {
-        recipeTableView.rowHeight = 200
-        recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeTableViewCell")
+
     }
 }
 
-extension RecipeListViewController : UITableViewDelegate {
+extension FavoriteViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeToDisplay = recipes[indexPath.row]
         self.recipeToDisplay = recipeToDisplay
-        performSegue(withIdentifier: "recipeToDetail", sender: nil)
+        performSegue(withIdentifier: "favoriteToDetail", sender: nil)
     }
 }
-extension RecipeListViewController: UITableViewDataSource {
+extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as? RecipeTableViewCell else {
             print("pas bon")

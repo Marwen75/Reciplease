@@ -13,6 +13,7 @@ class RecipeService {
     func getRecipes(ingredients: [String], completionHandler: @escaping (Result<RecipeSearchResult, ApiError>) -> Void) {
         let apiLogs = ApiKey()
         guard let usableUrl = URL(string: "https://api.edamam.com/search?q=\(ingredients.joined(separator: ","))&app_id=\(apiLogs.id)&app_key=\(apiLogs.key)") else {
+            print("c'est la la la")
             return
         }
         AF.request(usableUrl).responseJSON { responseData in

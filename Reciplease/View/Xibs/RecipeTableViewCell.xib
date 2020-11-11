@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,61 +17,65 @@
                 <rect key="frame" x="0.0" y="0.0" width="435" height="186"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food-1209503_1920" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-4M-le9">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-4M-le9">
                         <rect key="frame" x="0.0" y="0.0" width="435" height="186"/>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HzR-nW-Rbq">
-                        <rect key="frame" x="5" y="140" width="86" height="41"/>
+                        <rect key="frame" x="0.0" y="135" width="435" height="51"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5x-2h-lAd">
-                                <rect key="frame" x="0.0" y="0.0" width="86" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5x-2h-lAd">
+                                <rect key="frame" x="0.0" y="0.0" width="435" height="27"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMq-Qc-4uA">
-                                <rect key="frame" x="0.0" y="20.5" width="86" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMq-Qc-4uA">
+                                <rect key="frame" x="0.0" y="27" width="435" height="24"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aiB-UH-K9l">
-                        <rect key="frame" x="372" y="5" width="58" height="40"/>
+                        <rect key="frame" x="362" y="5" width="68" height="60"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vX6-1J-m4a">
-                                <rect key="frame" x="0.0" y="0.0" width="58" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="68" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKG-Kq-ky1">
-                                        <rect key="frame" x="0.0" y="0.0" width="38" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKG-Kq-ky1">
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XS9-49-HB5">
-                                        <rect key="frame" x="38" y="0.0" width="20" height="20"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun_clock_3591472" translatesAutoresizingMaskIntoConstraints="NO" id="XS9-49-HB5">
+                                        <rect key="frame" x="38" y="0.0" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="Mqo-Ru-S75"/>
-                                            <constraint firstAttribute="width" constant="20" id="UaG-TO-2BO"/>
+                                            <constraint firstAttribute="height" constant="30" id="Mqo-Ru-S75"/>
+                                            <constraint firstAttribute="width" constant="30" id="UaG-TO-2BO"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ed2-Dz-A2W">
-                                <rect key="frame" x="0.0" y="20" width="58" height="20"/>
+                                <rect key="frame" x="0.0" y="30" width="68" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yield" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Yh-o6-Afu">
-                                        <rect key="frame" x="0.0" y="0.0" width="38" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yield" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Yh-o6-Afu">
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8c3-Kv-58p">
-                                        <rect key="frame" x="38" y="0.0" width="20" height="20"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun_Fork Knife_1283736" translatesAutoresizingMaskIntoConstraints="NO" id="8c3-Kv-58p">
+                                        <rect key="frame" x="38" y="0.0" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="Q89-gY-Bdk"/>
-                                            <constraint firstAttribute="height" constant="20" id="z0f-Ft-n6W"/>
+                                            <constraint firstAttribute="width" constant="30" id="Q89-gY-Bdk"/>
+                                            <constraint firstAttribute="height" constant="30" id="z0f-Ft-n6W"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -80,13 +84,14 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="HzR-nW-Rbq" secondAttribute="bottom" constant="5" id="5Cx-cp-HuU"/>
+                    <constraint firstAttribute="bottom" secondItem="HzR-nW-Rbq" secondAttribute="bottom" id="5Cx-cp-HuU"/>
                     <constraint firstItem="aiB-UH-K9l" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="DlV-Zg-p5j"/>
                     <constraint firstAttribute="bottom" secondItem="hOf-4M-le9" secondAttribute="bottom" id="H0c-n2-MOh"/>
                     <constraint firstAttribute="trailing" secondItem="hOf-4M-le9" secondAttribute="trailing" id="Uhy-oN-ugU"/>
                     <constraint firstAttribute="trailing" secondItem="aiB-UH-K9l" secondAttribute="trailing" constant="5" id="WV7-p9-upq"/>
                     <constraint firstItem="hOf-4M-le9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YC8-rD-2TC"/>
-                    <constraint firstItem="HzR-nW-Rbq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="eUi-Mw-60N"/>
+                    <constraint firstAttribute="trailing" secondItem="HzR-nW-Rbq" secondAttribute="trailing" id="bOe-BI-t95"/>
+                    <constraint firstItem="HzR-nW-Rbq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eUi-Mw-60N"/>
                     <constraint firstItem="hOf-4M-le9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pkA-X3-mL3"/>
                 </constraints>
             </tableViewCellContentView>
@@ -102,6 +107,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="food-1209503_1920" width="640" height="360"/>
+        <image name="noun_Fork Knife_1283736" width="233.5" height="233.5"/>
+        <image name="noun_clock_3591472" width="233.5" height="233.5"/>
     </resources>
 </document>

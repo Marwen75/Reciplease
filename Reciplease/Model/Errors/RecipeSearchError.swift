@@ -12,15 +12,15 @@ enum RecipeSearchError: Error {
     
     case noIngredients
     case noFavorite
-    case eraseIngredients
+    case searchProblem
     case wrongSpelling
     
     var errorDescription: String {
         switch self {
         case .noIngredients, .noFavorite, .wrongSpelling:
             return "Oups !"
-        case .eraseIngredients:
-            return "Attention"
+        case .searchProblem:
+            return "Désolé !"
         }
     }
     
@@ -30,10 +30,10 @@ enum RecipeSearchError: Error {
             return "Sans ingrédients, pas de recettes !"
         case .noFavorite:
             return "Vous n'avez aucune recette dans vos favoris"
-        case .eraseIngredients:
-            return "Ceci effacera tous les ingrédients de votre liste"
+        case .searchProblem:
+            return "Un problème de données et survenue."
         case .wrongSpelling:
-            return "Veuillez entrer votre ingrédient en toutes lettres et sans ponctuations."
+            return "Veuillez entrer votre ingrédient en Anglais, sans ponctuations et sans espaces."
         }
     }
 }

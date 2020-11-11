@@ -13,7 +13,6 @@ class AddIngredientsViewController: UIViewController {
     private var ingredients: [String] = []
     static let segueId = "showRecipesList"
     private let recipeService = RecipeService()
-    private var recipeSearchResult: RecipeSearchResult?
     var recipes: [Recipes] = []
     
     
@@ -43,7 +42,13 @@ class AddIngredientsViewController: UIViewController {
     }
     
     @IBAction func addButtonTaped(_ sender: Any) {
-        addIngrendients()
+        do {
+            try addIngrendients()
+        } catch let error as RecipeSearchError {
+            displayAlert(title: error.errorDescription, message: error.failureReason)
+        } catch {
+            displayAlert(title: "Oups", message: "Erreur inconnue")
+        }
     }
     
     @IBAction func clearButtonTaped(_ sender: Any) {
@@ -60,7 +65,6 @@ class AddIngredientsViewController: UIViewController {
         }
     }
     
-    
     func getRecipes() throws {
         guard !ingredients.isEmpty else {
             throw RecipeSearchError.noIngredients
@@ -72,11 +76,9 @@ class AddIngredientsViewController: UIViewController {
                 switch result {
                 case.success(let recipes):
                     strongSelf.toggleActivityIndicator(shown: false)
-                    strongSelf.recipeSearchResult = recipes
                     strongSelf.recipes = recipes.hits.map { $0.recipe }
                     print(recipes.hits.count)
                     strongSelf.performSegue(withIdentifier: AddIngredientsViewController.segueId, sender: nil)
-                    print("segue")
                 case .failure(let error):
                     strongSelf.displayAlert(title: error.errorDescription, message: error.failureReason)
                 }
@@ -89,8 +91,11 @@ class AddIngredientsViewController: UIViewController {
         searchButton.isHidden = shown
     }
     
-    private func addIngrendients() {
+    private func addIngrendients() throws {
         guard let ingredient = ingredientTextField.text else {return}
+        if ingredient.contains(" ") {
+            throw RecipeSearchError.wrongSpelling
+        }
         ingredients.append(ingredient)
         ingredientsTableView.reloadData()
         ingredientTextField.text = ""
@@ -100,7 +105,6 @@ class AddIngredientsViewController: UIViewController {
         ingredients = []
         ingredientsTableView.reloadData()
     }
-    
 }
 
 extension AddIngredientsViewController: UITextFieldDelegate {

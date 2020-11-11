@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecipeDetailView" customModule="Reciplease" customModuleProvider="target">
+            <connections>
+                <outlet property="recipeImageView" destination="XkF-mQ-8eY" id="FYc-eG-fGv"/>
+                <outlet property="recipeTitleLabel" destination="uTe-CT-Zcq" id="bfJ-O2-ebR"/>
+                <outlet property="timeLabel" destination="C5g-io-3h5" id="evM-lL-rjZ"/>
+                <outlet property="yieldLabel" destination="vH8-J4-1x8" id="6OV-5c-0Ve"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XkF-mQ-8eY">
+                    <rect key="frame" x="0.0" y="44" width="414" height="370"/>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DR9-gR-OXd">
+                    <rect key="frame" x="331" y="49" width="78" height="80"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDq-vA-Smh">
+                            <rect key="frame" x="0.0" y="0.0" width="78" height="40"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5g-io-3h5">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun_clock_3591472" translatesAutoresizingMaskIntoConstraints="NO" id="LQl-N7-hMT">
+                                    <rect key="frame" x="38" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="bCQ-Kw-EZb"/>
+                                        <constraint firstAttribute="height" constant="40" id="njc-t2-cg3"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI0-M2-xbL">
+                            <rect key="frame" x="0.0" y="40" width="78" height="40"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yield" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vH8-J4-1x8">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun_Fork Knife_1283736" translatesAutoresizingMaskIntoConstraints="NO" id="4hm-HB-FFK">
+                                    <rect key="frame" x="38" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="C0d-uk-Zrx"/>
+                                        <constraint firstAttribute="width" constant="40" id="OYH-vA-Qb1"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleRecipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTe-CT-Zcq">
+                    <rect key="frame" x="0.0" y="388.5" width="414" height="25.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uTe-CT-Zcq" secondAttribute="bottom" id="25X-wz-WN7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DR9-gR-OXd" secondAttribute="trailing" constant="5" id="8Rh-FK-OmO"/>
+                <constraint firstItem="uTe-CT-Zcq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DFa-T6-QKh"/>
+                <constraint firstItem="XkF-mQ-8eY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ljf-RZ-u9V"/>
+                <constraint firstItem="DR9-gR-OXd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="Xjo-z6-0k7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uTe-CT-Zcq" secondAttribute="trailing" id="az2-c4-LoI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XkF-mQ-8eY" secondAttribute="trailing" id="iOk-W3-onM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XkF-mQ-8eY" secondAttribute="bottom" id="j3j-31-Csj"/>
+                <constraint firstItem="XkF-mQ-8eY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t4V-z0-r2q"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="269.86607142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="noun_Fork Knife_1283736" width="233.5" height="233.5"/>
+        <image name="noun_clock_3591472" width="233.5" height="233.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
