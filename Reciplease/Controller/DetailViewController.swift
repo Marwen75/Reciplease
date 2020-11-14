@@ -13,9 +13,15 @@ class DetailViewController: UIViewController {
     var recipeToDisplay: Recipes?
     private var ingredientLines: [String] = []
     
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var recipeDetailCustomView: RecipeDetailView!
     @IBOutlet weak var recipeDetailsTableView: UITableView!
+    
+    @IBAction func favoriteButtonTaped(_ sender: Any) {
+        favoriteButton.image = UIImage(named: "fullStar")
+    }
+    
     
     @IBAction func getDirectionsButtonTaped(_ sender: Any) {
         do {
