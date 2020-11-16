@@ -16,6 +16,8 @@
 		C22BA0612557FB50005D9906 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BA0602557FB50005D9906 /* ApiError.swift */; };
 		C22BA063255802E9005D9906 /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BA062255802E9005D9906 /* RecipeListViewController.swift */; };
 		C22BA06B2558491F005D9906 /* Extension+Viewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BA06A2558491F005D9906 /* Extension+Viewcontroller.swift */; };
+		C23B575725627C04004EDA15 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B575625627C04004EDA15 /* TestCoreDataStack.swift */; };
+		C23B575C2562810B004EDA15 /* CoreDataStoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B575B2562810B004EDA15 /* CoreDataStoreTestCase.swift */; };
 		C242B764255AD0CF004E2A73 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C242B763255AD0CF004E2A73 /* DetailViewController.swift */; };
 		C242B77F255BD411004E2A73 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C242B77E255BD411004E2A73 /* NibView.swift */; };
 		C242B787255BD4A9004E2A73 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C242B786255BD4A8004E2A73 /* RecipeDetailView.swift */; };
@@ -25,14 +27,25 @@
 		C25E4EEF255A835600A43439 /* RecipeSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E4EEE255A835600A43439 /* RecipeSearchError.swift */; };
 		C2643C0C255C137E00C089EA /* RecipeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2643C0B255C137E00C089EA /* RecipeDetailView.xib */; };
 		C2643C2D255C549100C089EA /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2643C2C255C549100C089EA /* FavoriteViewController.swift */; };
+		C28923B5256293E70081B1A9 /* edamam.json in Resources */ = {isa = PBXBuildFile; fileRef = C28923B4256293E70081B1A9 /* edamam.json */; };
+		C28923BA256294800081B1A9 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28923B9256294800081B1A9 /* FakeResponseData.swift */; };
+		C28923DC256298E00081B1A9 /* AlamoSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28923DB256298E00081B1A9 /* AlamoSessionFake.swift */; };
 		C28E8C82254FF32500FDEE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C81254FF32500FDEE84 /* AppDelegate.swift */; };
 		C28E8C84254FF32500FDEE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C83254FF32500FDEE84 /* SceneDelegate.swift */; };
 		C28E8C89254FF32500FDEE84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E8C87254FF32500FDEE84 /* Main.storyboard */; };
 		C28E8C8C254FF32500FDEE84 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C8A254FF32500FDEE84 /* Reciplease.xcdatamodeld */; };
 		C28E8C8E254FF32A00FDEE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C28E8C8D254FF32A00FDEE84 /* Assets.xcassets */; };
 		C28E8C91254FF32A00FDEE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E8C8F254FF32A00FDEE84 /* LaunchScreen.storyboard */; };
-		C28E8C9C254FF32B00FDEE84 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8C9B254FF32B00FDEE84 /* RecipleaseTests.swift */; };
 		C28E8CA7254FF32B00FDEE84 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E8CA6254FF32B00FDEE84 /* RecipleaseUITests.swift */; };
+		C2C15A1C255FECC6001FE157 /* FavoriteRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A1B255FECC6001FE157 /* FavoriteRecipe.swift */; };
+		C2C15A2F255FF860001FE157 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A2E255FF860001FE157 /* CoreDataError.swift */; };
+		C2C15A3B256001C3001FE157 /* EasyRecipeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A3A256001C3001FE157 /* EasyRecipeDisplay.swift */; };
+		C2C15A4925614754001FE157 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A4825614754001FE157 /* CoreDataStack.swift */; };
+		C2C15A4E25614BC2001FE157 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A4D25614BC2001FE157 /* CoreDataStore.swift */; };
+		C2C15A5325615DBA001FE157 /* Extension+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A5225615DBA001FE157 /* Extension+TableView.swift */; };
+		C2C15A74256179F5001FE157 /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A73256179F5001FE157 /* SessionProtocol.swift */; };
+		C2C15A8025617D69001FE157 /* AlamoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A7F25617D69001FE157 /* AlamoClient.swift */; };
+		C2C15A9C25619B1B001FE157 /* RecipeServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A9B25619B1B001FE157 /* RecipeServiceTestCase.swift */; };
 		F2716ED2A8462A3EB246B7F2 /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630378570F790D54DA61274D /* Pods_Reciplease.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +81,8 @@
 		C22BA0602557FB50005D9906 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		C22BA062255802E9005D9906 /* RecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		C22BA06A2558491F005D9906 /* Extension+Viewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Viewcontroller.swift"; sourceTree = "<group>"; };
+		C23B575625627C04004EDA15 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		C23B575B2562810B004EDA15 /* CoreDataStoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreTestCase.swift; sourceTree = "<group>"; };
 		C242B763255AD0CF004E2A73 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C242B77E255BD411004E2A73 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		C242B786255BD4A8004E2A73 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
@@ -77,6 +92,9 @@
 		C25E4EEE255A835600A43439 /* RecipeSearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchError.swift; sourceTree = "<group>"; };
 		C2643C0B255C137E00C089EA /* RecipeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeDetailView.xib; sourceTree = "<group>"; };
 		C2643C2C255C549100C089EA /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		C28923B4256293E70081B1A9 /* edamam.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = edamam.json; sourceTree = "<group>"; };
+		C28923B9256294800081B1A9 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		C28923DB256298E00081B1A9 /* AlamoSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoSessionFake.swift; sourceTree = "<group>"; };
 		C28E8C7E254FF32500FDEE84 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28E8C81254FF32500FDEE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C28E8C83254FF32500FDEE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,11 +104,20 @@
 		C28E8C90254FF32A00FDEE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C28E8C92254FF32A00FDEE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C28E8C97254FF32B00FDEE84 /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C28E8C9B254FF32B00FDEE84 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		C28E8C9D254FF32B00FDEE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C28E8CA2254FF32B00FDEE84 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28E8CA6254FF32B00FDEE84 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		C28E8CA8254FF32B00FDEE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2C15A1B255FECC6001FE157 /* FavoriteRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipe.swift; sourceTree = "<group>"; };
+		C2C15A2E255FF860001FE157 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		C2C15A3A256001C3001FE157 /* EasyRecipeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyRecipeDisplay.swift; sourceTree = "<group>"; };
+		C2C15A4825614754001FE157 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C2C15A4D25614BC2001FE157 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		C2C15A5225615DBA001FE157 /* Extension+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+TableView.swift"; sourceTree = "<group>"; };
+		C2C15A73256179F5001FE157 /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
+		C2C15A7F25617D69001FE157 /* AlamoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoClient.swift; sourceTree = "<group>"; };
+		C2C15A9A25619B1A001FE157 /* RecipleaseTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecipleaseTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		C2C15A9B25619B1B001FE157 /* RecipeServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceTestCase.swift; sourceTree = "<group>"; };
 		D981517459F573BCAFC65071 /* Pods-RecipleaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F95BFB0FB82C7721D45D5B48 /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				C22BA0602557FB50005D9906 /* ApiError.swift */,
+				C2C15A2E255FF860001FE157 /* CoreDataError.swift */,
 				C25E4EEE255A835600A43439 /* RecipeSearchError.swift */,
 			);
 			path = Errors;
@@ -159,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				C22BA050255025C4005D9906 /* RecipeService.swift */,
+				C2C15A73256179F5001FE157 /* SessionProtocol.swift */,
+				C2C15A7F25617D69001FE157 /* AlamoClient.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -167,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				C22BA05225503913005D9906 /* RecipeSearchResult.swift */,
+				C2C15A3A256001C3001FE157 /* EasyRecipeDisplay.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -176,6 +207,7 @@
 			children = (
 				C22BA06A2558491F005D9906 /* Extension+Viewcontroller.swift */,
 				C25E4EE8255924BE00A43439 /* Extension+UIImageView.swift */,
+				C2C15A5225615DBA001FE157 /* Extension+TableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -215,10 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				C28E8C92254FF32A00FDEE84 /* Info.plist */,
-				C28E8CB4254FF37A00FDEE84 /* Model */,
+				C28E8CB4254FF37A00FDEE84 /* Models */,
 				C28E8CB6254FF39D00FDEE84 /* Controller */,
 				C28E8CB5254FF39600FDEE84 /* View */,
-				C28E8C8A254FF32500FDEE84 /* Reciplease.xcdatamodeld */,
 				C28E8CB7254FF3D100FDEE84 /* Supporting files */,
 			);
 			path = Reciplease;
@@ -227,8 +258,14 @@
 		C28E8C9A254FF32B00FDEE84 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				C28E8C9B254FF32B00FDEE84 /* RecipleaseTests.swift */,
 				C28E8C9D254FF32B00FDEE84 /* Info.plist */,
+				C23B575625627C04004EDA15 /* TestCoreDataStack.swift */,
+				C2C15A9B25619B1B001FE157 /* RecipeServiceTestCase.swift */,
+				C23B575B2562810B004EDA15 /* CoreDataStoreTestCase.swift */,
+				C28923B9256294800081B1A9 /* FakeResponseData.swift */,
+				C28923DB256298E00081B1A9 /* AlamoSessionFake.swift */,
+				C28923B4256293E70081B1A9 /* edamam.json */,
+				C2C15A9A25619B1A001FE157 /* RecipleaseTests-Bridging-Header.h */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -242,15 +279,16 @@
 			path = RecipleaseUITests;
 			sourceTree = "<group>";
 		};
-		C28E8CB4254FF37A00FDEE84 /* Model */ = {
+		C28E8CB4254FF37A00FDEE84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				C22BA04E2550253F005D9906 /* ApiKey.swift */,
+				C2C15A6F2561799B001FE157 /* CoreData */,
 				C2643C10255C3CA100C089EA /* Errors */,
 				C2643C11255C3CD000C089EA /* Service */,
 				C2643C12255C3CDB00C089EA /* Entities */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C28E8CB5254FF39600FDEE84 /* View */ = {
@@ -286,6 +324,18 @@
 				C28E8C81254FF32500FDEE84 /* AppDelegate.swift */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		C2C15A6F2561799B001FE157 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C2C15A1B255FECC6001FE157 /* FavoriteRecipe.swift */,
+				C28E8C8A254FF32500FDEE84 /* Reciplease.xcdatamodeld */,
+				C2C15A4825614754001FE157 /* CoreDataStack.swift */,
+				C2C15A4D25614BC2001FE157 /* CoreDataStore.swift */,
+			);
+			name = CoreData;
+			path = Errors/CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +414,7 @@
 					};
 					C28E8C96254FF32B00FDEE84 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1210;
 						TestTargetID = C28E8C7D254FF32500FDEE84;
 					};
 					C28E8CA1254FF32B00FDEE84 = {
@@ -409,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28923B5256293E70081B1A9 /* edamam.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,19 +581,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C15A4925614754001FE157 /* CoreDataStack.swift in Sources */,
 				C28E8C8C254FF32500FDEE84 /* Reciplease.xcdatamodeld in Sources */,
 				C22BA051255025C4005D9906 /* RecipeService.swift in Sources */,
+				C2C15A5325615DBA001FE157 /* Extension+TableView.swift in Sources */,
 				C22BA06B2558491F005D9906 /* Extension+Viewcontroller.swift in Sources */,
 				C25E4EEC2559514200A43439 /* RecipeTableViewCell.swift in Sources */,
 				C22BA063255802E9005D9906 /* RecipeListViewController.swift in Sources */,
 				C242B77F255BD411004E2A73 /* NibView.swift in Sources */,
 				C22BA05325503913005D9906 /* RecipeSearchResult.swift in Sources */,
+				C2C15A1C255FECC6001FE157 /* FavoriteRecipe.swift in Sources */,
 				C25E4EEF255A835600A43439 /* RecipeSearchError.swift in Sources */,
 				C22BA04D25501E8B005D9906 /* AddIngredientsViewController.swift in Sources */,
 				C28E8C82254FF32500FDEE84 /* AppDelegate.swift in Sources */,
 				C22BA0612557FB50005D9906 /* ApiError.swift in Sources */,
+				C2C15A74256179F5001FE157 /* SessionProtocol.swift in Sources */,
 				C22BA04F2550253F005D9906 /* ApiKey.swift in Sources */,
+				C2C15A4E25614BC2001FE157 /* CoreDataStore.swift in Sources */,
+				C2C15A8025617D69001FE157 /* AlamoClient.swift in Sources */,
 				C2643C2D255C549100C089EA /* FavoriteViewController.swift in Sources */,
+				C2C15A3B256001C3001FE157 /* EasyRecipeDisplay.swift in Sources */,
+				C2C15A2F255FF860001FE157 /* CoreDataError.swift in Sources */,
 				C25E4EE9255924BE00A43439 /* Extension+UIImageView.swift in Sources */,
 				C28E8C84254FF32500FDEE84 /* SceneDelegate.swift in Sources */,
 				C242B764255AD0CF004E2A73 /* DetailViewController.swift in Sources */,
@@ -553,7 +613,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C28E8C9C254FF32B00FDEE84 /* RecipleaseTests.swift in Sources */,
+				C2C15A9C25619B1B001FE157 /* RecipeServiceTestCase.swift in Sources */,
+				C28923BA256294800081B1A9 /* FakeResponseData.swift in Sources */,
+				C23B575C2562810B004EDA15 /* CoreDataStoreTestCase.swift in Sources */,
+				C28923DC256298E00081B1A9 /* AlamoSessionFake.swift in Sources */,
+				C23B575725627C04004EDA15 /* TestCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +824,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PTPRZC36QH;
 				INFOPLIST_FILE = RecipleaseTests/Info.plist;
@@ -771,6 +836,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.marwen.RecipleaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecipleaseTests/RecipleaseTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reciplease.app/Reciplease";
@@ -783,6 +850,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PTPRZC36QH;
 				INFOPLIST_FILE = RecipleaseTests/Info.plist;
@@ -794,6 +862,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.marwen.RecipleaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecipleaseTests/RecipleaseTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reciplease.app/Reciplease";

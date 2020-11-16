@@ -12,7 +12,7 @@ class AddIngredientsViewController: UIViewController {
     
     private var ingredients: [String] = []
     static let segueId = "showRecipesList"
-    private let recipeService = RecipeService()
+    var recipeService = RecipeService(session: AlamoClient() as SessionProtocol)
     var recipes: [Recipes] = []
     
     

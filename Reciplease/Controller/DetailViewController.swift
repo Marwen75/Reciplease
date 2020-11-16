@@ -7,19 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController {
     
-    var recipeToDisplay: Recipes?
+    var recipeToDisplay: EasyRecipeDisplay?
     private var ingredientLines: [String] = []
+    var coreDataStore: CoreDataStore?
+    
     
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var recipeDetailCustomView: RecipeDetailView!
     @IBOutlet weak var recipeDetailsTableView: UITableView!
     
-    @IBAction func favoriteButtonTaped(_ sender: Any) {
-        favoriteButton.image = UIImage(named: "fullStar")
+    
+    @IBAction func favoriteButtonTaped(_ sender: UIBarButtonItem) {
+        
+        guard let imgUrl = self.recipeToDisplay?.image, let url = recipeToDisplay?.url,
+              let name = recipeToDisplay?.name, let time = recipeToDisplay?.time,
+              let yield = recipeToDisplay?.yield, let ingredients = recipeToDisplay?.ingredients else {
+            return
+        }
+        if sender.image == UIImage(named: "emptyStar") {
+            sender.image = UIImage(named: "fullStar")
+            coreDataStore?.addFavorite(name: name,
+                                       ingredients: ingredients,
+                                       yield: yield, time: time,
+                                       url: url, image: imgUrl)
+            displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
+        } else if sender.image == UIImage(named: "fullStar") {
+            sender.image = UIImage(named: "emptyStar")
+            coreDataStore?.deleteFavorite(named: name)
+            displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
+        }
     }
     
     
@@ -33,6 +54,11 @@ class DetailViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkForFavorite()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
@@ -42,8 +68,19 @@ class DetailViewController: UIViewController {
         } catch {
             displayAlert(title: "Oups !", message: "Erreur inconnue...")
         }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let coreDataStack = appDelegate.coreDataStack
+        coreDataStore = CoreDataStore(coreDataStack: coreDataStack)
     }
     
+    private func checkForFavorite() {
+        guard let name = recipeDetailCustomView.recipeTitleLabel.text,
+              coreDataStore?.checkForFavoriteRecipe(named: name) == true else {
+            favoriteButton.image = UIImage(named: "emptyStar")
+            return
+        }
+        favoriteButton.image = UIImage(named: "fullStar")
+    }
     
     private func getDirections() throws {
         guard let recipeUrl = recipeToDisplay?.url else {
@@ -56,8 +93,8 @@ class DetailViewController: UIViewController {
     private func setRecipeDetails() throws {
         
         guard let imgUrl = self.recipeToDisplay?.image, let usableUrl = URL(string: imgUrl),
-              let title = recipeToDisplay?.label, let time = recipeToDisplay?.totalTime,
-              let yield = recipeToDisplay?.yield, let ingredientLines = recipeToDisplay?.ingredientLines else {
+              let title = recipeToDisplay?.name, let time = recipeToDisplay?.time,
+              let yield = recipeToDisplay?.yield, let ingredientLines = recipeToDisplay?.ingredients else {
             throw RecipeSearchError.searchProblem
         }
         self.ingredientLines.append(contentsOf: ingredientLines)

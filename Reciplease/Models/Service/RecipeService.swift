@@ -10,13 +10,19 @@ import Foundation
 
 class RecipeService {
     
+    var session: SessionProtocol
+    
+    init(session: SessionProtocol) {
+        self.session = session
+    }
+    
     func getRecipes(ingredients: [String], completionHandler: @escaping (Result<RecipeSearchResult, ApiError>) -> Void) {
         let apiLogs = ApiKey()
         guard let usableUrl = URL(string: "https://api.edamam.com/search?q=\(ingredients.joined(separator: ","))&app_id=\(apiLogs.id)&app_key=\(apiLogs.key)") else {
             print("c'est la la la")
             return
         }
-        AF.request(usableUrl).responseJSON { responseData in
+        session.request(url: usableUrl) { responseData in
             guard let data = responseData.data else {
                 print("databug1")
                 completionHandler(.failure(.noData))

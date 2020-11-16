@@ -84,11 +84,12 @@
                     <navigationItem key="navigationItem" title="Reciplease" id="FRB-XX-oRZ"/>
                     <connections>
                         <outlet property="favoriteTableView" destination="c3a-fm-BjK" id="Fai-Fy-pqF"/>
+                        <segue destination="ozK-Yb-ECP" kind="show" identifier="favoriteToDetail" id="GOY-yI-nED"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yl8-c5-nL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357" y="313"/>
+            <point key="canvasLocation" x="2385" y="313"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bWi-2f-WE2">
@@ -371,7 +372,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="emptyStar " style="done" id="nVT-Mo-HKU">
                             <color key="tintColor" systemColor="linkColor"/>
                             <connections>
-                                <action selector="favoriteButtonTaped:" destination="ozK-Yb-ECP" id="mZE-pJ-Nxp"/>
+                                <action selector="favoriteButtonTaped:" destination="ozK-Yb-ECP" id="U8f-8Y-XWt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -387,6 +388,9 @@
             <point key="canvasLocation" x="3149.275362318841" y="-368.97321428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GOY-yI-nED"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="emptyStar " width="46.666667938232422" height="40"/>
         <systemColor name="linkColor">

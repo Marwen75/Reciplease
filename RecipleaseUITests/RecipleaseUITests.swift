@@ -5,7 +5,7 @@
 //  Created by Marwen Haouacine on 02/11/2020.
 //  Copyright © 2020 marwen. All rights reserved.
 //
-
+import Reciplease
 import XCTest
 
 class RecipleaseUITests: XCTestCase {

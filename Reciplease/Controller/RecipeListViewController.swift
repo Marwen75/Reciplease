@@ -11,7 +11,7 @@ class RecipeListViewController: UIViewController {
     
     static let segueId = "recipeToDetail"
     var recipes: [Recipes] = []
-    var recipeToDisplay: Recipes?
+    var recipeToDisplay: EasyRecipeDisplay?
     
     @IBOutlet weak var recipeTableView: UITableView!
     
@@ -36,7 +36,7 @@ class RecipeListViewController: UIViewController {
 extension RecipeListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeToDisplay = recipes[indexPath.row]
-        self.recipeToDisplay = recipeToDisplay
+        self.recipeToDisplay = EasyRecipeDisplay(name: recipeToDisplay.label, image: recipeToDisplay.image, url: recipeToDisplay.url, ingredients: recipeToDisplay.ingredientLines, yield: recipeToDisplay.yield, time: recipeToDisplay.totalTime ?? 0)
         performSegue(withIdentifier: "recipeToDetail", sender: nil)
     }
 }
