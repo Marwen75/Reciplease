@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Reciplease
+@testable import Reciplease
 import Alamofire
 
 class AlamoSessionFake: SessionProtocol {
@@ -18,13 +18,13 @@ class AlamoSessionFake: SessionProtocol {
         self.response = response
     }
     
-    func request(url: URL, completionHandler: @escaping (AFDataResponse<Any>) -> Void) {
-        let result = AF
+    func request(url: URL, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        completionHandler(response.data, response.response, response.error)
     }
 }
 
 struct FakeAlamoResponse {
-    var urlResponse: HTTPURLResponse?
+    var error: Error?
     var data: Data?
     var response: HTTPURLResponse?
 }

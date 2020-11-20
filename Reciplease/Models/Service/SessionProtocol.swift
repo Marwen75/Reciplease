@@ -9,8 +9,9 @@
 import Foundation
 import Alamofire
 
-public protocol SessionProtocol {
+// The session protocol to not depend only on Alamofire and also to help  with the test
+
+protocol SessionProtocol {
     
-     func request(url: URL, completionHandler: @escaping (AFDataResponse<Any>) -> Void)
-    
+     func request(url: URL, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
 }

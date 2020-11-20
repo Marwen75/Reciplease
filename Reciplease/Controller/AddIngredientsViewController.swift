@@ -10,12 +10,7 @@ import UIKit
 
 class AddIngredientsViewController: UIViewController {
     
-    private var ingredients: [String] = []
-    static let segueId = "showRecipesList"
-    var recipeService = RecipeService(session: AlamoClient() as SessionProtocol)
-    var recipes: [Recipes] = []
-    
-    
+    // MARK: - Outlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var ingredientTextField: UITextField!
@@ -23,7 +18,14 @@ class AddIngredientsViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var ingredientsTableView: UITableView!
     
+    // MARK: - Properties
+    static let segueId = "showRecipesList"
     
+    private var ingredients: [String] = []
+    private let recipeService = RecipeService(session: AlamoClient() as SessionProtocol)
+    var recipes: [Recipes] = []
+    
+    // MARK: - View Life cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ingredientsTableView.reloadData()
@@ -41,13 +43,14 @@ class AddIngredientsViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
     @IBAction func addButtonTaped(_ sender: Any) {
         do {
             try addIngrendients()
         } catch let error as RecipeSearchError {
             displayAlert(title: error.errorDescription, message: error.failureReason)
         } catch {
-            displayAlert(title: "Oups", message: "Erreur inconnue")
+            
         }
     }
     
@@ -57,31 +60,31 @@ class AddIngredientsViewController: UIViewController {
     
     @IBAction func searchButtonTaped(_ sender: Any) {
         do {
-             try getRecipes()
-        } catch let error as RecipeSearchError {
+            try getRecipes()
+        } catch let error as ApiError {
             displayAlert(title: error.errorDescription, message: error.failureReason)
-        } catch {
-            displayAlert(title: "Oups!", message: "Erreur inconnue")
-        }
+        } catch {}
     }
     
+    // MARK: - Methods
     func getRecipes() throws {
-        guard !ingredients.isEmpty else {
-            throw RecipeSearchError.noIngredients
-        }
         toggleActivityIndicator(shown: true)
+        guard InternetConnectionVerifiyer.isConnectedToNetwork() else {
+            toggleActivityIndicator(shown: false)
+            throw ApiError.noInternet
+        }
         recipeService.getRecipes(ingredients: ingredients) { result in
             DispatchQueue.main.async { [weak self] in
                 guard let strongSelf = self else {return}
                 switch result {
                 case.success(let recipes):
-                    strongSelf.toggleActivityIndicator(shown: false)
                     strongSelf.recipes = recipes.hits.map { $0.recipe }
                     print(recipes.hits.count)
                     strongSelf.performSegue(withIdentifier: AddIngredientsViewController.segueId, sender: nil)
                 case .failure(let error):
                     strongSelf.displayAlert(title: error.errorDescription, message: error.failureReason)
                 }
+                strongSelf.toggleActivityIndicator(shown: false)
             }
         }
     }
@@ -93,10 +96,15 @@ class AddIngredientsViewController: UIViewController {
     
     private func addIngrendients() throws {
         guard let ingredient = ingredientTextField.text else {return}
-        if ingredient.contains(" ") {
-            throw RecipeSearchError.wrongSpelling
+        guard !ingredient.isEmpty else {
+            throw RecipeSearchError.noIngredients
         }
-        ingredients.append(ingredient)
+        ingredients.append(contentsOf: ingredient.components(separatedBy: [" ", ","]))
+        let sortedIngredients = ingredients.map {
+            $0.trimmingCharacters(in: .whitespaces)
+        }
+        let filteredIngredients = sortedIngredients.filter { $0 != "" }
+        ingredients = filteredIngredients
         ingredientsTableView.reloadData()
         ingredientTextField.text = ""
     }
@@ -107,17 +115,25 @@ class AddIngredientsViewController: UIViewController {
     }
 }
 
+// MARK: - Text field delegate
 extension AddIngredientsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-}
-extension AddIngredientsViewController : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped")
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return string == string.filter("abcdefghijklmnopqrstuvwxyz, ".contains)
     }
 }
+
+// MARK: - Table view delegate
+extension AddIngredientsViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+}
+
+// MARK: - Table view data source
 extension AddIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)

@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Custom table view cell for the recipe list
+
 class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeImageView: UIImageView!
@@ -15,6 +17,13 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeIngredients: UILabel!
     @IBOutlet weak var cookingTimeLabel: UILabel!
     @IBOutlet weak var yieldLabel: UILabel!
+    
+    
+    override func prepareForReuse() {
+        super .prepareForReuse()
+        recipeImageView.image = nil
+        recipeImageView.backgroundColor = .black
+    }
     
     func configure(title: String, ingredients: String, time: Int, yield: Int) {
         recipeTitle.text = title

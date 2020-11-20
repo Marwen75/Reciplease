@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Decodable objects to parse the JSON data received by the API
+
 struct RecipeSearchResult: Decodable {
     let hits: [Hit]
 }

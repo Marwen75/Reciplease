@@ -9,41 +9,54 @@
 import UIKit
 class RecipeListViewController: UIViewController {
     
-    static let segueId = "recipeToDetail"
-    var recipes: [Recipes] = []
-    var recipeToDisplay: EasyRecipeDisplay?
-    
+    // MARK: - Outlets
     @IBOutlet weak var recipeTableView: UITableView!
     
+    // MARK: - Properties
+    static let segueId = "recipeToDetail"
+    var recipes: [Recipes] = []
+    var recipeModel: RecipeModel?
+    
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
+        do {
+            try configureTableView()
+        } catch let error as RecipeSearchError {
+            displayAlert(title: error.errorDescription, message: error.failureReason)
+        } catch {}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == RecipeListViewController.segueId {
             let recipesVC = segue.destination as! DetailViewController
-            recipesVC.recipeToDisplay = recipeToDisplay
+            recipesVC.recipeModel = recipeModel
         }
     }
     
-    private func configureTableView() {
+    // MARK: - Methods
+    private func configureTableView() throws {
         recipeTableView.rowHeight = 200
         recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeTableViewCell")
+        guard !recipes.isEmpty else {
+            throw RecipeSearchError.noResults
+        }
     }
 }
 
+// MARK: - Table view delegate
 extension RecipeListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeToDisplay = recipes[indexPath.row]
-        self.recipeToDisplay = EasyRecipeDisplay(name: recipeToDisplay.label, image: recipeToDisplay.image, url: recipeToDisplay.url, ingredients: recipeToDisplay.ingredientLines, yield: recipeToDisplay.yield, time: recipeToDisplay.totalTime ?? 0)
+        let recipeModel = recipes[indexPath.row]
+        self.recipeModel = RecipeModel(name: recipeModel.label, image: recipeModel.image, url: recipeModel.url, ingredients: recipeModel.ingredientLines, yield: recipeModel.yield, time: recipeModel.totalTime ?? 0)
         performSegue(withIdentifier: "recipeToDetail", sender: nil)
     }
 }
+
+// MARK: - Table view data source
 extension RecipeListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as? RecipeTableViewCell else {
-            print("pas bon")
             return UITableViewCell()
         }
         if let defaultImageUrl = URL(string: "https://pixabay.com/photos/food-kitchen-cook-tomatoes-dish-1932466/") {

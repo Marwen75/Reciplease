@@ -18,17 +18,16 @@ class RecipeService {
     
     func getRecipes(ingredients: [String], completionHandler: @escaping (Result<RecipeSearchResult, ApiError>) -> Void) {
         let apiLogs = ApiKey()
-        guard let usableUrl = URL(string: "https://api.edamam.com/search?q=\(ingredients.joined(separator: ","))&app_id=\(apiLogs.id)&app_key=\(apiLogs.key)") else {
-            print("c'est la la la")
+        guard let usableUrl = URL(string: "https://api.edamam.com/search?q=\(ingredients.joined(separator: ","))&app_id=\(apiLogs.id)&app_key=\(apiLogs.key)&from=0&to=50") else {
             return
         }
-        session.request(url: usableUrl) { responseData in
-            guard let data = responseData.data else {
+        session.request(url: usableUrl) { data ,urlResponse, error in
+            guard let data = data else {
                 print("databug1")
                 completionHandler(.failure(.noData))
                 return
             }
-            guard responseData.response?.statusCode == 200 else {
+            guard urlResponse?.statusCode == 200 else {
                 print("badrequest bug")
                 completionHandler(.failure(.badRequest))
                 return

@@ -9,14 +9,17 @@
 import Foundation
 import CoreData
 
-open class CoreDataStack {
+
+class CoreDataStack {
     
-    public static let modelName = "Reciplease"
+    // MARK: - Properties
+    static let modelName = "Reciplease"
     
-    public init() {
+    init() {
     }
     
-    public lazy var persistentContainer: NSPersistentContainer = {
+    // MARK: - Core Data Stack
+    lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: CoreDataStack.modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -28,13 +31,13 @@ open class CoreDataStack {
         return container
     }()
     
-    public lazy var viewContext: NSManagedObjectContext = {
+    lazy var viewContext: NSManagedObjectContext = {
         return persistentContainer.viewContext
     }()
     
     // MARK: - Core Data Saving support
-    
-    public func saveContext () {
+ 
+    func saveContext() {
         let context = viewContext
         if context.hasChanges {
             do {

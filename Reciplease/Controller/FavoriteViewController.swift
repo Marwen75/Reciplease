@@ -10,12 +10,15 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
-    static let segueId = "favoriteToDetail"
-    var recipeToDisplay: EasyRecipeDisplay?
-    var coreDataStore: CoreDataStore?
-    
+    // MARK: - Outlets
     @IBOutlet weak var favoriteTableView: UITableView!
     
+    // MARK: - Properties
+    static let segueId = "favoriteToDetail"
+    var recipeModel: RecipeModel?
+    var dataStorage: DataStorage?
+    
+    // MARK: - View life cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         favoriteTableView.reloadData()
@@ -25,54 +28,67 @@ class FavoriteViewController: UIViewController {
         configureTableView()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = appDelegate.coreDataStack
-        coreDataStore = CoreDataStore(coreDataStack: coreDataStack)
+        dataStorage = DataStorage(coreDataStack: coreDataStack)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == FavoriteViewController.segueId {
             let recipesVC = segue.destination as! DetailViewController
-            recipesVC.recipeToDisplay = recipeToDisplay
+            recipesVC.recipeModel = recipeModel
         }
     }
-    
+    // MARK: - Methods
     private func configureTableView() {
         favoriteTableView.rowHeight = 200
         favoriteTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeTableViewCell")
     }
 }
-
+// MARK: - Table view delegate
 extension FavoriteViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let recipeToDisplay = coreDataStore?.favoriteRecipes[indexPath.row]
+        let recipeModel = dataStorage?.favoriteRecipes[indexPath.row]
         
-        self.recipeToDisplay = EasyRecipeDisplay(name: recipeToDisplay?.name ?? "",
-                                                 image: recipeToDisplay?.image ?? "", url: recipeToDisplay?.url ?? "",
-                                                 ingredients: recipeToDisplay?.ingredients ?? [""],
-                                                 yield: Int(recipeToDisplay?.yield ?? 0 ), time: Int(recipeToDisplay?.time ?? 0 ))
+        self.recipeModel = RecipeModel(name: recipeModel?.name ?? "",
+                                                 image: recipeModel?.image ?? "", url: recipeModel?.url ?? "",
+                                                 ingredients: recipeModel?.ingredients ?? [""],
+                                                 yield: Int(recipeModel?.yield ?? 0 ), time: Int(recipeModel?.time ?? 0 ))
         
         performSegue(withIdentifier: "favoriteToDetail", sender: nil)
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        guard let recipeName = dataStorage?.favoriteRecipes[indexPath.row].name else { return }
         
-        guard let recipeName = coreDataStore?.favoriteRecipes[indexPath.row].name else { return }
-        
-        if tableView.dataHasChanged {
-            tableView.reloadData()
-        }
-        coreDataStore?.deleteFavorite(named: recipeName)
+        dataStorage?.deleteFavorite(named: recipeName)
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        label.backgroundColor = .black
+        label.numberOfLines = 5
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.font = UIFont(name: "Chalkduster", size: 20)
+        label.text = "You don't have any favorite recipes yet ! To add a recipe to your favorite list, click the star on the upper right of the recipe details."
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return dataStorage?.favoriteRecipes.isEmpty ?? true ? 500 : 0
+       }
 }
+// MARK: - Table view Data source
 extension FavoriteViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as? RecipeTableViewCell else {
-            print("pas bon")
+            
             return UITableViewCell()
         }
         
@@ -80,19 +96,19 @@ extension FavoriteViewController: UITableViewDataSource {
         
         if let defaultImageUrl = URL(string: defaultImage) {
             
-            cell.recipeImageView.load(url: (URL(string: coreDataStore?.favoriteRecipes[indexPath.row].image ?? defaultImage) ?? defaultImageUrl))
+            cell.recipeImageView.load(url: (URL(string: dataStorage?.favoriteRecipes[indexPath.row].image ?? defaultImage) ?? defaultImageUrl))
         }
         
-        cell.configure(title: (coreDataStore?.favoriteRecipes[indexPath.row].name ?? ""),
-                       ingredients: coreDataStore?.favoriteRecipes[indexPath.row].ingredients?.joined(separator: ",") ?? "Nothing",
-                       time: Int(coreDataStore?.favoriteRecipes[indexPath.row].time ?? 0),
-                       yield: Int(coreDataStore?.favoriteRecipes[indexPath.row].yield ?? 0))
+        cell.configure(title: (dataStorage?.favoriteRecipes[indexPath.row].name ?? ""),
+                       ingredients: dataStorage?.favoriteRecipes[indexPath.row].ingredients?.joined(separator: ",") ?? "Nothing",
+                       time: Int(dataStorage?.favoriteRecipes[indexPath.row].time ?? 0),
+                       yield: Int(dataStorage?.favoriteRecipes[indexPath.row].yield ?? 0))
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return coreDataStore?.favoriteRecipes.count ?? 0
+        return dataStorage?.favoriteRecipes.count ?? 0
     }
 }

@@ -13,43 +13,43 @@ import XCTest
 class CoreDataStoreTestCase: XCTestCase {
     
     var coreDataStack: CoreDataStack!
-    var coreDataStore: CoreDataStore!
+    var dataStorage: DataStorage!
 
     override func setUp() {
         super.setUp()
         coreDataStack = TestCoreDataStack()
-        coreDataStore = CoreDataStore(coreDataStack: coreDataStack)
+        dataStorage = DataStorage(coreDataStack: coreDataStack)
     }
     
     override func tearDown() {
         super.tearDown()
-        coreDataStore = nil
+        dataStorage = nil
         coreDataStack = nil
     }
     
     func testIfAFavoriteRecipeIsAddedThenTheRecipeShouldAppearInCoreData() {
-        coreDataStore.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
+        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
         
-        XCTAssertTrue(coreDataStore.favoriteRecipes.count == 1)
-        XCTAssertTrue(coreDataStore.favoriteRecipes[0].name == "Recette")
+        XCTAssertTrue(dataStorage.favoriteRecipes.count == 1)
+        XCTAssertTrue(dataStorage.favoriteRecipes[0].name == "Recette")
     }
     
     func testIfAFavoriteIsDeletedThenTheRecipeShouldNotAppearInCoreData() {
-        coreDataStore.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
-        coreDataStore.deleteFavorite(named: "Recette")
+        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
+        dataStorage.deleteFavorite(named: "Recette")
         
-        XCTAssertTrue(coreDataStore.favoriteRecipes.count == 0)
+        XCTAssertTrue(dataStorage.favoriteRecipes.count == 0)
     }
     
     func testIfAFavoriteRecipeAlreadyExistsThenCoreDataShouldFindIt() {
-        coreDataStore.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
+        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
         
-        XCTAssertTrue(coreDataStore.checkForFavoriteRecipe(named: "Recette"))
+        XCTAssertTrue(dataStorage.checkForFavoriteRecipe(named: "Recette"))
     }
     
     func testSearchingForAFavoriteRecipeThatDoesntExistsThenItShouldReturnFalse() {
-        coreDataStore.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
+        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
         
-        XCTAssertFalse(coreDataStore.checkForFavoriteRecipe(named: "Udon"))
+        XCTAssertFalse(dataStorage.checkForFavoriteRecipe(named: "Udon"))
     }
 }

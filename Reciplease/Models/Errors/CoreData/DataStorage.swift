@@ -9,22 +9,27 @@
 import Foundation
 import CoreData
 
-class CoreDataStore {
+class DataStorage {
     
+    // MARK: - Properties
     private let objectContext: NSManagedObjectContext
+    let privateMoc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     private let coreDataStack: CoreDataStack
+    
     
     var favoriteRecipes: [FavoriteRecipe] {
         let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
-        guard let persons = try? objectContext.fetch(request) else { return [] }
+        guard let persons = try? self.objectContext.fetch(request) else { return [] }
         return persons
     }
     
+    // MARK: - Init
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.objectContext = coreDataStack.viewContext
     }
     
+    // MARK: - CRUD
     func addFavorite(name: String, ingredients: [String], yield: Int, time: Int, url: String, image: String) {
         let recipe = FavoriteRecipe(context: objectContext)
         recipe.name = name
@@ -56,8 +61,8 @@ class CoreDataStore {
             FavoriteRecipe.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)
         do {
-            let fetchResults = try objectContext.fetch(request)
-            fetchResults.forEach { objectContext.delete($0) }
+            let fetchResults = try self.objectContext.fetch(request)
+            fetchResults.forEach { self.objectContext.delete($0) }
         } catch let error as NSError {
             print(error.userInfo)
         }

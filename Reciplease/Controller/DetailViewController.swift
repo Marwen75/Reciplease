@@ -6,54 +6,24 @@
 //  Copyright © 2020 marwen. All rights reserved.
 //
 
+import SafariServices
 import UIKit
 import CoreData
 
 class DetailViewController: UIViewController {
     
-    var recipeToDisplay: EasyRecipeDisplay?
-    private var ingredientLines: [String] = []
-    var coreDataStore: CoreDataStore?
-    
-    
+    // MARK: - Outlets
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var recipeDetailCustomView: RecipeDetailView!
     @IBOutlet weak var recipeDetailsTableView: UITableView!
     
+    // MARK: - Properties
+    var recipeModel: RecipeModel?
+    private var ingredientLines: [String] = []
+    var dataStorage: DataStorage?
     
-    @IBAction func favoriteButtonTaped(_ sender: UIBarButtonItem) {
-        
-        guard let imgUrl = self.recipeToDisplay?.image, let url = recipeToDisplay?.url,
-              let name = recipeToDisplay?.name, let time = recipeToDisplay?.time,
-              let yield = recipeToDisplay?.yield, let ingredients = recipeToDisplay?.ingredients else {
-            return
-        }
-        if sender.image == UIImage(named: "emptyStar") {
-            sender.image = UIImage(named: "fullStar")
-            coreDataStore?.addFavorite(name: name,
-                                       ingredients: ingredients,
-                                       yield: yield, time: time,
-                                       url: url, image: imgUrl)
-            displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
-        } else if sender.image == UIImage(named: "fullStar") {
-            sender.image = UIImage(named: "emptyStar")
-            coreDataStore?.deleteFavorite(named: name)
-            displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
-        }
-    }
-    
-    
-    @IBAction func getDirectionsButtonTaped(_ sender: Any) {
-        do {
-            try getDirections()
-        } catch let error as RecipeSearchError {
-            displayAlert(title: error.errorDescription, message: error.failureReason)
-        } catch {
-            displayAlert(title: "Oups !", message: "Erreur inconnue...")
-        }
-    }
-    
+    // MARK: - View life cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkForFavorite()
@@ -61,41 +31,66 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try setRecipeDetails()
-        } catch let error as RecipeSearchError {
-            displayAlert(title: error.errorDescription, message: error.failureReason)
-        } catch {
-            displayAlert(title: "Oups !", message: "Erreur inconnue...")
-        }
+        favoriteButton.image = UIImage(named: "fullStar")
+        setRecipeDetails()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = appDelegate.coreDataStack
-        coreDataStore = CoreDataStore(coreDataStack: coreDataStack)
+        dataStorage = DataStorage(coreDataStack: coreDataStack)
     }
     
+    // MARK: - Actions
+    @IBAction func favoriteButtonTaped(_ sender: UIBarButtonItem) {
+        guard let recipe = self.recipeModel else {return}
+        checkForFavorite()
+        if !recipe.isFavorite {
+            sender.tintColor = .systemGreen
+            recipeModel?.isFavorite = true
+            dataStorage?.addFavorite(name: recipe.name,
+                                     ingredients: recipe.ingredients,
+                                     yield: recipe.yield, time: recipe.time,
+                                     url: recipe.url, image: recipe.image)
+            displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
+        } else if recipe.isFavorite {
+            sender.tintColor = .white
+            recipeModel?.isFavorite = false
+            dataStorage?.deleteFavorite(named: recipe.name)
+            displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
+        }
+    }
+    
+    @IBAction func getDirectionsButtonTaped(_ sender: Any) {
+        getDirections()
+    }
+    
+    // MARK: - Methods
     private func checkForFavorite() {
         guard let name = recipeDetailCustomView.recipeTitleLabel.text,
-              coreDataStore?.checkForFavoriteRecipe(named: name) == true else {
-            favoriteButton.image = UIImage(named: "emptyStar")
+              dataStorage?.checkForFavoriteRecipe(named: name) == true else {
+            recipeModel?.isFavorite = false
+            favoriteButton.tintColor = .white
             return
         }
-        favoriteButton.image = UIImage(named: "fullStar")
+        recipeModel?.isFavorite = true
+        favoriteButton.tintColor = .systemGreen
     }
     
-    private func getDirections() throws {
-        guard let recipeUrl = recipeToDisplay?.url else {
-            throw RecipeSearchError.searchProblem
-        }
-        guard let directionsUrl = URL(string: recipeUrl) else {return}
-        UIApplication.shared.open(directionsUrl)
-    }
-    
-    private func setRecipeDetails() throws {
+    private func getDirections() {
+        guard let recipeUrl = recipeModel?.url,
+              let directionsUrl = URL(string: recipeUrl) else {return}
         
-        guard let imgUrl = self.recipeToDisplay?.image, let usableUrl = URL(string: imgUrl),
-              let title = recipeToDisplay?.name, let time = recipeToDisplay?.time,
-              let yield = recipeToDisplay?.yield, let ingredientLines = recipeToDisplay?.ingredients else {
-            throw RecipeSearchError.searchProblem
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+
+        let vc = SFSafariViewController(url: directionsUrl, configuration: config)
+        present(vc, animated: true)
+    }
+    
+    private func setRecipeDetails() {
+        
+        guard let imgUrl = self.recipeModel?.image, let usableUrl = URL(string: imgUrl),
+              let title = recipeModel?.name, let time = recipeModel?.time,
+              let yield = recipeModel?.yield, let ingredientLines = recipeModel?.ingredients else {
+            return
         }
         self.ingredientLines.append(contentsOf: ingredientLines)
         recipeDetailCustomView.recipeImageView.load(url: usableUrl)
@@ -113,11 +108,22 @@ class DetailViewController: UIViewController {
     }
 }
 
+// MARK: - Table View delegate
 extension DetailViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped")
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        label.backgroundColor = .black
+        label.textColor = UIColor.white
+        label.font = UIFont(name: "Chalkduster", size: 20)
+        label.text = "Ingredients: "
+        return label
     }
 }
+
+// MARK: - Table View datasource
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsDetailCell", for: indexPath)

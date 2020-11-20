@@ -20,11 +20,11 @@ enum ApiError: Error {
     var failureReason: String {
         switch self {
         case .noData:
-            return "Ces données ne peuvent pas être fournies pour le moment."
+            return "These data can't be retrieved at the moment."
         case .badRequest:
-            return "La requète réseau a échouée"
+            return "The request has failed."
         case .noInternet:
-            return "Le service est indisponible! Vous ne semblez pas connecté à internet"
+            return "Service unavailable at the moment, it seems your are not connected to the internet."
         }
     }
 }

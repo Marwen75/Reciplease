@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Reciplease
+@testable import Reciplease
 import CoreData
 
 class TestCoreDataStack: CoreDataStack {

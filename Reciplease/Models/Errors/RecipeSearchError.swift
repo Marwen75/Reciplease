@@ -13,27 +13,27 @@ enum RecipeSearchError: Error {
     case noIngredients
     case noFavorite
     case searchProblem
-    case wrongSpelling
+    case noResults
     
     var errorDescription: String {
         switch self {
-        case .noIngredients, .noFavorite, .wrongSpelling:
+        case .noIngredients, .noFavorite, .noResults:
             return "Oups !"
         case .searchProblem:
-            return "Désolé !"
+            return "Sorry !"
         }
     }
     
     var failureReason: String {
         switch self {
         case .noIngredients:
-            return "Sans ingrédients, pas de recettes !"
+            return "Without ingredients, no recipes !"
         case .noFavorite:
-            return "Vous n'avez aucune recette dans vos favoris"
+            return "You have no recipe in your favorite list at the time."
         case .searchProblem:
-            return "Un problème de données et survenue."
-        case .wrongSpelling:
-            return "Veuillez entrer votre ingrédient en Anglais, sans ponctuations et sans espaces."
+            return "It might look that the app had a search problem."
+        case .noResults:
+            return "No recipes found, make sure you wrote your ingredients in english, check for misspelling and try again."
         }
     }
 }
