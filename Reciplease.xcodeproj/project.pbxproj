@@ -244,8 +244,8 @@
 			children = (
 				C28E8C92254FF32A00FDEE84 /* Info.plist */,
 				C28E8CB4254FF37A00FDEE84 /* Models */,
-				C28E8CB6254FF39D00FDEE84 /* Controller */,
-				C28E8CB5254FF39600FDEE84 /* View */,
+				C28E8CB6254FF39D00FDEE84 /* Controllers */,
+				C28E8CB5254FF39600FDEE84 /* Views */,
 				C28E8CB7254FF3D100FDEE84 /* Supporting files */,
 			);
 			path = Reciplease;
@@ -287,7 +287,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		C28E8CB5254FF39600FDEE84 /* View */ = {
+		C28E8CB5254FF39600FDEE84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C28E8C8D254FF32A00FDEE84 /* Assets.xcassets */,
@@ -297,10 +297,10 @@
 				C242B786255BD4A8004E2A73 /* RecipeDetailView.swift */,
 				C2643C25255C3D6C00C089EA /* Xibs */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		C28E8CB6254FF39D00FDEE84 /* Controller */ = {
+		C28E8CB6254FF39D00FDEE84 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C22BA04C25501E8B005D9906 /* AddIngredientsViewController.swift */,
@@ -309,7 +309,7 @@
 				C2643C2C255C549100C089EA /* FavoriteViewController.swift */,
 				C2643C16255C3CFA00C089EA /* Extensions */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C28E8CB7254FF3D100FDEE84 /* Supporting files */ = {

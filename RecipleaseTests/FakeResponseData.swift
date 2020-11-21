@@ -10,9 +10,6 @@ import Foundation
 
 class FakeResponseData {
     
-    class TestError: Error {}
-    static let error = TestError()
-    
     static let responseOK = HTTPURLResponse(url: URL(string: "https://www.hackingwithswift.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
     static let responseKO = HTTPURLResponse(url: URL(string: "https://www.hackingwithswift.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)
     

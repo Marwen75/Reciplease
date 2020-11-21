@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-
+// An object that will manage the core data stack and saving support
 class CoreDataStack {
     
     // MARK: - Properties
@@ -24,7 +24,6 @@ class CoreDataStack {
         let container = NSPersistentContainer(name: CoreDataStack.modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -36,16 +35,20 @@ class CoreDataStack {
     }()
     
     // MARK: - Core Data Saving support
- 
-    func saveContext() {
-        let context = viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    func saveContext(forContext context: NSManagedObjectContext) {
+            if context.hasChanges {
+                context.performAndWait {
+                    do {
+                        try context.save()
+                    } catch {
+                        let nserror = error as NSError
+                        print("Error when saving !!! \(nserror.localizedDescription)")
+                        print("Callstack :")
+                        for symbol: String in Thread.callStackSymbols {
+                            print(" > \(symbol)")
+                        }
+                    }
+                }
             }
         }
-    }
 }

@@ -43,6 +43,7 @@ class FavoriteViewController: UIViewController {
         favoriteTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeTableViewCell")
     }
 }
+
 // MARK: - Table view delegate
 extension FavoriteViewController : UITableViewDelegate {
     
@@ -51,20 +52,20 @@ extension FavoriteViewController : UITableViewDelegate {
         let recipeModel = dataStorage?.favoriteRecipes[indexPath.row]
         
         self.recipeModel = RecipeModel(name: recipeModel?.name ?? "",
-                                                 image: recipeModel?.image ?? "", url: recipeModel?.url ?? "",
-                                                 ingredients: recipeModel?.ingredients ?? [""],
-                                                 yield: Int(recipeModel?.yield ?? 0 ), time: Int(recipeModel?.time ?? 0 ))
+                                       image: recipeModel?.image ?? "", url: recipeModel?.url ?? "",
+                                       ingredients: recipeModel?.ingredients ?? [""],
+                                       yield: Int(recipeModel?.yield ?? 0 ), time: Int(recipeModel?.time ?? 0 ))
         
         performSegue(withIdentifier: "favoriteToDetail", sender: nil)
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-        guard let recipeName = dataStorage?.favoriteRecipes[indexPath.row].name else { return }
         
+        guard let recipeName = dataStorage?.favoriteRecipes[indexPath.row].name else { return }
         dataStorage?.deleteFavorite(named: recipeName)
         tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -80,7 +81,7 @@ extension FavoriteViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return dataStorage?.favoriteRecipes.isEmpty ?? true ? 500 : 0
-       }
+    }
 }
 // MARK: - Table view Data source
 extension FavoriteViewController: UITableViewDataSource {

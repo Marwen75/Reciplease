@@ -7,20 +7,17 @@
 //
 
 import Foundation
-
+// An enum for the error that can occur during the search for a recipe by the user
 enum RecipeSearchError: Error {
     
     case noIngredients
     case noFavorite
-    case searchProblem
     case noResults
     
     var errorDescription: String {
         switch self {
         case .noIngredients, .noFavorite, .noResults:
             return "Oups !"
-        case .searchProblem:
-            return "Sorry !"
         }
     }
     
@@ -30,8 +27,6 @@ enum RecipeSearchError: Error {
             return "Without ingredients, no recipes !"
         case .noFavorite:
             return "You have no recipe in your favorite list at the time."
-        case .searchProblem:
-            return "It might look that the app had a search problem."
         case .noResults:
             return "No recipes found, make sure you wrote your ingredients in english, check for misspelling and try again."
         }

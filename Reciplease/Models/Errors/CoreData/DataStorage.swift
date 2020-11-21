@@ -8,12 +8,12 @@
 
 import Foundation
 import CoreData
-
+// This object will be the data storage of the app 
 class DataStorage {
     
     // MARK: - Properties
     private let objectContext: NSManagedObjectContext
-    let privateMoc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+    private let privateMoc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     private let coreDataStack: CoreDataStack
     
     
@@ -31,14 +31,18 @@ class DataStorage {
     
     // MARK: - CRUD
     func addFavorite(name: String, ingredients: [String], yield: Int, time: Int, url: String, image: String) {
-        let recipe = FavoriteRecipe(context: objectContext)
-        recipe.name = name
-        recipe.ingredients = ingredients
-        recipe.yield = Int64(yield)
-        recipe.time = Int64(time)
-        recipe.url = url
-        recipe.image = image
-        coreDataStack.saveContext()
+        privateMoc.parent = objectContext
+        privateMoc.performAndWait {
+            let recipe = FavoriteRecipe(context: self.privateMoc)
+            recipe.name = name
+            recipe.ingredients = ingredients
+            recipe.yield = Int64(yield)
+            recipe.time = Int64(time)
+            recipe.url = url
+            recipe.image = image
+            coreDataStack.saveContext(forContext: privateMoc)
+        }
+        coreDataStack.saveContext(forContext: objectContext)
     }
     
     func checkForFavoriteRecipe(named name: String) -> Bool {
@@ -57,15 +61,19 @@ class DataStorage {
     }
     
     func deleteFavorite(named name: String) {
-        let request: NSFetchRequest<FavoriteRecipe> =
-            FavoriteRecipe.fetchRequest()
-        request.predicate = NSPredicate(format: "name == %@", name)
-        do {
-            let fetchResults = try self.objectContext.fetch(request)
-            fetchResults.forEach { self.objectContext.delete($0) }
-        } catch let error as NSError {
-            print(error.userInfo)
+        privateMoc.parent = objectContext
+        privateMoc.performAndWait {
+            let request: NSFetchRequest<FavoriteRecipe> =
+                FavoriteRecipe.fetchRequest()
+            request.predicate = NSPredicate(format: "name == %@", name)
+            do {
+                let fetchResults = try self.objectContext.fetch(request)
+                fetchResults.forEach { self.objectContext.delete($0) }
+            } catch let error as NSError {
+                print(error.userInfo)
+            }
+            coreDataStack.saveContext(forContext: privateMoc)
         }
-        coreDataStack.saveContext()
+        coreDataStack.saveContext(forContext: objectContext)
     }
 }

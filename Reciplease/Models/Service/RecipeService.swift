@@ -8,6 +8,7 @@
 import Alamofire
 import Foundation
 
+// The recipe service will perform our requests to the edamam API 
 class RecipeService {
     
     var session: SessionProtocol
@@ -18,7 +19,7 @@ class RecipeService {
     
     func getRecipes(ingredients: [String], completionHandler: @escaping (Result<RecipeSearchResult, ApiError>) -> Void) {
         let apiLogs = ApiKey()
-        guard let usableUrl = URL(string: "https://api.edamam.com/search?q=\(ingredients.joined(separator: ","))&app_id=\(apiLogs.id)&app_key=\(apiLogs.key)&from=0&to=50") else {
+        guard let usableUrl = URL(string: "https://api.edamam.com/search?q=\(ingredients.joined(separator: ","))&app_id=\(apiLogs.id)&app_key=\(apiLogs.key)&from=0&to=100") else {
             return
         }
         session.request(url: usableUrl) { data ,urlResponse, error in
@@ -37,7 +38,7 @@ class RecipeService {
                 let responseJSON = try decoder.decode(RecipeSearchResult.self, from: data)
                 completionHandler(.success(responseJSON))
             } catch {
-                print("jsonpabon")
+                print("Problem JSON")
                 completionHandler(.failure(.noData))
             }
         }

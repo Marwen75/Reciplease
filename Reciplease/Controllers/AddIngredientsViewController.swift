@@ -127,12 +127,6 @@ extension AddIngredientsViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Table view delegate
-extension AddIngredientsViewController : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
-}
-
 // MARK: - Table view data source
 extension AddIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
