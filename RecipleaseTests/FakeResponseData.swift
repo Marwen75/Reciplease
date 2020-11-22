@@ -8,6 +8,7 @@
 
 import Foundation
 
+// A set of fake response data to mock response from the API 
 class FakeResponseData {
     
     static let responseOK = HTTPURLResponse(url: URL(string: "https://www.hackingwithswift.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)

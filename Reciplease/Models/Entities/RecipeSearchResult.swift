@@ -22,7 +22,7 @@ struct Recipes: Decodable {
     let label: String
     let image: String
     let url: String
-    let yield: Int
+    let yield: Float?
     let ingredientLines: [String]
-    let totalTime: Int?
+    let totalTime: Float?
 }

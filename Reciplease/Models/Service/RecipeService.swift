@@ -38,7 +38,7 @@ class RecipeService {
                 let responseJSON = try decoder.decode(RecipeSearchResult.self, from: data)
                 completionHandler(.success(responseJSON))
             } catch {
-                print("Problem JSON")
+                print("Problem JSON ½")
                 completionHandler(.failure(.noData))
             }
         }

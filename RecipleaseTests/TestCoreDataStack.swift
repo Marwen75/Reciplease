@@ -10,6 +10,7 @@ import XCTest
 @testable import Reciplease
 import CoreData
 
+// A class that inherits from CoreDataStack that will serve within our tests
 class TestCoreDataStack: CoreDataStack {
 
     override init() {

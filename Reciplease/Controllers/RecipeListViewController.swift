@@ -48,7 +48,7 @@ class RecipeListViewController: UIViewController {
 extension RecipeListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeModel = recipes[indexPath.row]
-        self.recipeModel = RecipeModel(name: recipeModel.label, image: recipeModel.image, url: recipeModel.url, ingredients: recipeModel.ingredientLines, yield: recipeModel.yield, time: recipeModel.totalTime ?? 0)
+        self.recipeModel = RecipeModel(name: recipeModel.label, image: recipeModel.image, url: recipeModel.url, ingredients: recipeModel.ingredientLines, yield: Int(recipeModel.yield ?? 0), time: Int(recipeModel.totalTime ?? 0.0))
         performSegue(withIdentifier: "recipeToDetail", sender: nil)
     }
 }
@@ -64,8 +64,8 @@ extension RecipeListViewController: UITableViewDataSource {
         }
         cell.configure(title: (recipes[indexPath.row].label),
                        ingredients: recipes[indexPath.row].ingredientLines.joined(separator: ","),
-                       time: recipes[indexPath.row].totalTime ?? 0,
-                       yield: recipes[indexPath.row].yield)
+                       time: Int(recipes[indexPath.row].totalTime ?? 0),
+                       yield: Int(recipes[indexPath.row].yield ?? 0))
         
         return cell
     }

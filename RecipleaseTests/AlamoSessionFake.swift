@@ -10,6 +10,7 @@ import XCTest
 @testable import Reciplease
 import Alamofire
 
+// A fake session of the Alamofire framework to use within our tests
 class AlamoSessionFake: SessionProtocol {
     
     let response: FakeAlamoResponse

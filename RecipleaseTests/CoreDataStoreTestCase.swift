@@ -10,6 +10,7 @@ import XCTest
 @testable import Reciplease
  import CoreData
 
+// Tests for coredata
 class CoreDataStoreTestCase: XCTestCase {
     
     var coreDataStack: CoreDataStack!

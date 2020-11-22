@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// An extension that will display our alerts throughout our view controllers
 extension UIViewController {
     
     func displayAlert(title: String, message: String) {

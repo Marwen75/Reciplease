@@ -8,6 +8,8 @@
 @testable import Reciplease
 import XCTest
 import Alamofire
+
+// Tests for the recipe service
 class RecipeServiceTestCase: XCTestCase {
 
     var error: ApiError!
