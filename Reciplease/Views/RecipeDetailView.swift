@@ -9,6 +9,7 @@
 import UIKit
 
 //@IBDesignable
+// A custom view for the recipe detail page
 class RecipeDetailView: NibView {
     
     @IBOutlet weak var recipeImageView: UIImageView!
