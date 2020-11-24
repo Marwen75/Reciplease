@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
+// A class that will allow us to verify if the user is connected to the internet or not
 public class InternetConnectionVerifiyer {
 
     private init() {}

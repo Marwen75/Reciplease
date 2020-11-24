@@ -59,7 +59,7 @@ extension FavoriteViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let recipeName = favoriteRecipeStorage?.favoriteRecipes[indexPath.row].name else { return }
         if editingStyle == .delete {
-            favoriteRecipeStorage?.deleteFavorite(named: recipeName) {
+            favoriteRecipeStorage?.deleteFavorite(named: recipeName) { 
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }

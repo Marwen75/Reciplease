@@ -43,14 +43,16 @@ class DetailViewController: UIViewController {
         if !recipe.isFavorite {
             sender.tintColor = .systemGreen
             recipeModel?.isFavorite = true
-            favoriteRecipeStorage?.addFavorite(recipe: recipe) {
-            self.displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
+            favoriteRecipeStorage?.addFavorite(recipe: recipe) { [weak self] in
+                guard let strongSelf = self else {return}
+                strongSelf.displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
             }
         } else {
             sender.tintColor = .white
             recipeModel?.isFavorite = false
-            favoriteRecipeStorage?.deleteFavorite(named: recipe.name) {
-            self.displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
+            favoriteRecipeStorage?.deleteFavorite(named: recipe.name) { [weak self] in
+                guard let strongSelf = self else {return}
+                strongSelf.displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
             }
         }
     }
