@@ -14,6 +14,7 @@ class RecipeServiceTestCase: XCTestCase {
 
     var error: ApiError!
     
+    
     func testGetRecipesShouldPostFailedCompletionHandlerIfThereIsNoDataAtAll() {
         let session = AlamoSessionFake(response: FakeAlamoResponse(error: nil, data: nil, response: nil))
         let requestService = RecipeService(session: session)
@@ -75,7 +76,7 @@ class RecipeServiceTestCase: XCTestCase {
                 return
             }
             XCTAssertNotNil(result)
-            XCTAssertTrue(result.hits.first?.recipe.label == "Chicken Vesuvio")
+            XCTAssertTrue(result.first?.label == "Chicken Vesuvio")
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.5)
@@ -90,7 +91,7 @@ class RecipeServiceTestCase: XCTestCase {
                 return
             }
             XCTAssertNotNil(result)
-            XCTAssertTrue(result.hits.first?.recipe.label == "Chicken Vesuvio")
+            XCTAssertTrue(result.first?.label == "Chicken Vesuvio")
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 7)

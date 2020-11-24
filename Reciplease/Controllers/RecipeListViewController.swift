@@ -15,16 +15,12 @@ class RecipeListViewController: UIViewController {
     // MARK: - Properties
     static let segueId = "recipeToDetail"
     var recipes: [Recipes] = []
-    var recipeModel: RecipeModel?
+    private var recipeModel: RecipeModel?
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try configureTableView()
-        } catch let error as RecipeSearchError {
-            displayAlert(title: error.errorDescription, message: error.failureReason)
-        } catch {}
+        configureTableView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,12 +31,9 @@ class RecipeListViewController: UIViewController {
     }
     
     // MARK: - Methods
-    private func configureTableView() throws {
+    private func configureTableView() {
         recipeTableView.rowHeight = 200
         recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeTableViewCell")
-        guard !recipes.isEmpty else {
-            throw RecipeSearchError.noResults
-        }
     }
 }
 

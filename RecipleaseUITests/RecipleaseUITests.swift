@@ -156,10 +156,9 @@ class RecipleaseUITests: XCTestCase {
         app/*@START_MENU_TOKEN@*/.staticTexts["Search for recipes"]/*[[".buttons[\"Search for recipes\"].staticTexts[\"Search for recipes\"]",".staticTexts[\"Search for recipes\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         app.alerts["Oups !"].scrollViews.otherElements.buttons["OK"].tap()
         
+        let ingredientCell = app.tables.cells
         
-        let emptyListTable = XCUIApplication().tables["Empty list"]
-        
-        XCTAssertTrue(emptyListTable.value as! String == "")
+        XCTAssertNotNil(ingredientCell)
     }
 
     func testLaunchPerformance() {

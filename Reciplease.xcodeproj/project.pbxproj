@@ -41,7 +41,7 @@
 		C2C15A1C255FECC6001FE157 /* FavoriteRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A1B255FECC6001FE157 /* FavoriteRecipe.swift */; };
 		C2C15A3B256001C3001FE157 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A3A256001C3001FE157 /* RecipeModel.swift */; };
 		C2C15A4925614754001FE157 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A4825614754001FE157 /* CoreDataStack.swift */; };
-		C2C15A4E25614BC2001FE157 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A4D25614BC2001FE157 /* DataStorage.swift */; };
+		C2C15A4E25614BC2001FE157 /* FavoriteRecipeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A4D25614BC2001FE157 /* FavoriteRecipeStorage.swift */; };
 		C2C15A74256179F5001FE157 /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A73256179F5001FE157 /* SessionProtocol.swift */; };
 		C2C15A8025617D69001FE157 /* AlamoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A7F25617D69001FE157 /* AlamoClient.swift */; };
 		C2C15A9C25619B1B001FE157 /* RecipeServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C15A9B25619B1B001FE157 /* RecipeServiceTestCase.swift */; };
@@ -111,7 +111,7 @@
 		C2C15A1B255FECC6001FE157 /* FavoriteRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipe.swift; sourceTree = "<group>"; };
 		C2C15A3A256001C3001FE157 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		C2C15A4825614754001FE157 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		C2C15A4D25614BC2001FE157 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		C2C15A4D25614BC2001FE157 /* FavoriteRecipeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeStorage.swift; sourceTree = "<group>"; };
 		C2C15A73256179F5001FE157 /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
 		C2C15A7F25617D69001FE157 /* AlamoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoClient.swift; sourceTree = "<group>"; };
 		C2C15A9A25619B1A001FE157 /* RecipleaseTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecipleaseTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 				C28E8C8A254FF32500FDEE84 /* Reciplease.xcdatamodeld */,
 				C2C15A1B255FECC6001FE157 /* FavoriteRecipe.swift */,
 				C2C15A4825614754001FE157 /* CoreDataStack.swift */,
-				C2C15A4D25614BC2001FE157 /* DataStorage.swift */,
+				C2C15A4D25614BC2001FE157 /* FavoriteRecipeStorage.swift */,
 			);
 			name = CoreData;
 			path = Errors/CoreData;
@@ -594,7 +594,7 @@
 				C22BA0612557FB50005D9906 /* ApiError.swift in Sources */,
 				C2C15A74256179F5001FE157 /* SessionProtocol.swift in Sources */,
 				C22BA04F2550253F005D9906 /* ApiKey.swift in Sources */,
-				C2C15A4E25614BC2001FE157 /* DataStorage.swift in Sources */,
+				C2C15A4E25614BC2001FE157 /* FavoriteRecipeStorage.swift in Sources */,
 				C2C15A8025617D69001FE157 /* AlamoClient.swift in Sources */,
 				C2643C2D255C549100C089EA /* FavoriteViewController.swift in Sources */,
 				C2C15A3B256001C3001FE157 /* RecipeModel.swift in Sources */,

@@ -8,7 +8,6 @@
 
 import SafariServices
 import UIKit
-import CoreData
 
 class DetailViewController: UIViewController {
     
@@ -21,7 +20,7 @@ class DetailViewController: UIViewController {
     // MARK: - Properties
     var recipeModel: RecipeModel?
     private var ingredientLines: [String] = []
-    var dataStorage: DataStorage?
+    private var favoriteRecipeStorage: FavoriteRecipeStorage?
     
     // MARK: - View life cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -31,11 +30,10 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        favoriteButton.image = UIImage(named: "fullStar")
         setRecipeDetails()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = appDelegate.coreDataStack
-        dataStorage = DataStorage(coreDataStack: coreDataStack)
+        favoriteRecipeStorage = FavoriteRecipeStorage(coreDataStack: coreDataStack)
     }
     
     // MARK: - Actions
@@ -45,16 +43,15 @@ class DetailViewController: UIViewController {
         if !recipe.isFavorite {
             sender.tintColor = .systemGreen
             recipeModel?.isFavorite = true
-            dataStorage?.addFavorite(name: recipe.name,
-                                     ingredients: recipe.ingredients,
-                                     yield: recipe.yield, time: recipe.time,
-                                     url: recipe.url, image: recipe.image)
-            displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
-        } else if recipe.isFavorite {
+            favoriteRecipeStorage?.addFavorite(recipe: recipe) {
+            self.displayAlert(title: "Yum !", message: "This recipe has been saved in your favorite list.")
+            }
+        } else {
             sender.tintColor = .white
             recipeModel?.isFavorite = false
-            dataStorage?.deleteFavorite(named: recipe.name)
-            displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
+            favoriteRecipeStorage?.deleteFavorite(named: recipe.name) {
+            self.displayAlert(title: "Done !", message: "This recipe has been deleted from your favorite list.")
+            }
         }
     }
     
@@ -64,29 +61,27 @@ class DetailViewController: UIViewController {
     
     // MARK: - Methods
     private func checkForFavorite() {
-        guard let name = recipeDetailCustomView.recipeTitleLabel.text,
-              dataStorage?.checkForFavoriteRecipe(named: name) == true else {
+        guard let name = recipeModel?.name else {return}
+        if favoriteRecipeStorage?.checkForFavoriteRecipe(named: name) == true { 
+            recipeModel?.isFavorite = true
+            favoriteButton.tintColor = .green
+        } else {
             recipeModel?.isFavorite = false
             favoriteButton.tintColor = .white
-            return
         }
-        recipeModel?.isFavorite = true
-        favoriteButton.tintColor = .systemGreen
     }
     
     private func getDirections() {
         guard let recipeUrl = recipeModel?.url,
               let directionsUrl = URL(string: recipeUrl) else {return}
-        
+        // Opening an SFSafariVC for the user to read the recipes instruction
         let config = SFSafariViewController.Configuration()
         config.entersReaderIfAvailable = true
-
         let vc = SFSafariViewController(url: directionsUrl, configuration: config)
         present(vc, animated: true)
     }
-    
+    // setting the recipe details using our recipeModel
     private func setRecipeDetails() {
-        
         guard let imgUrl = self.recipeModel?.image, let usableUrl = URL(string: imgUrl),
               let title = recipeModel?.name, let time = recipeModel?.time,
               let yield = recipeModel?.yield, let ingredientLines = recipeModel?.ingredients else {
@@ -95,22 +90,14 @@ class DetailViewController: UIViewController {
         self.ingredientLines.append(contentsOf: ingredientLines)
         recipeDetailCustomView.recipeImageView.load(url: usableUrl)
         recipeDetailCustomView.recipeTitleLabel.text = title
-        if time == 0 {
-            recipeDetailCustomView.timeLabel.text = "N/A"
-        } else {
-            recipeDetailCustomView.timeLabel.text = String(time)
-        }
-        if yield == 0 {
-            recipeDetailCustomView.yieldLabel.text = "N/A"
-        } else {
-            recipeDetailCustomView.yieldLabel.text = String(yield)
-        }
+        recipeDetailCustomView.timeLabel.text = time == 0 ? "N/A" : String(time)
+        recipeDetailCustomView.yieldLabel.text = yield == 0 ? "N/A" : String(yield)
     }
 }
 
 // MARK: - Table View delegate
 extension DetailViewController : UITableViewDelegate {
-    
+    // Creating a header for the ingredient list 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
         label.backgroundColor = .black

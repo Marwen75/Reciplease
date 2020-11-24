@@ -28,15 +28,7 @@ class RecipeTableViewCell: UITableViewCell {
     func configure(title: String, ingredients: String, time: Int, yield: Int) {
         recipeTitle.text = title
         recipeIngredients.text = ingredients
-        if time == 0 {
-            cookingTimeLabel.text = "N/A"
-        } else {
-        cookingTimeLabel.text = String(time)
-        }
-        if yield == 0 {
-            yieldLabel.text = "N/A"
-        } else {
-        yieldLabel.text = String(yield)
-        }
+        cookingTimeLabel.text = time == 0 ? "N/A" : String(time)
+        yieldLabel.text = yield == 0 ? "N/A" : String(yield)
     }
 }

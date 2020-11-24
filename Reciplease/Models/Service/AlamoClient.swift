@@ -15,7 +15,7 @@ class AlamoClient: SessionProtocol {
     
     func request(url: URL, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
         AF.request(url).responseJSON { responseData in
-            completionHandler(responseData.data, responseData.response, responseData.error ?? AFError?.none)
+            completionHandler(responseData.data, responseData.response, responseData.error)
         }
     }
 }

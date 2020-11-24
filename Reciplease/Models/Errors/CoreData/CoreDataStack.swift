@@ -24,7 +24,7 @@ class CoreDataStack {
         let container = NSPersistentContainer(name: CoreDataStack.modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                print(error.userInfo)
             }
         })
         return container
@@ -35,20 +35,13 @@ class CoreDataStack {
     }()
     
     // MARK: - Core Data Saving support
-    func saveContext(forContext context: NSManagedObjectContext) {
-            if context.hasChanges {
-                context.performAndWait {
-                    do {
-                        try context.save()
-                    } catch {
-                        let nserror = error as NSError
-                        print("Error when saving !!! \(nserror.localizedDescription)")
-                        print("Callstack :")
-                        for symbol: String in Thread.callStackSymbols {
-                            print(" > \(symbol)")
-                        }
-                    }
-                }
-            }
+    func saveContext () {
+        guard viewContext.hasChanges else { return }
+        
+        do {
+            try viewContext.save()
+        } catch let nserror as NSError {
+            print(nserror.userInfo)
         }
+    }
 }

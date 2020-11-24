@@ -9,6 +9,6 @@
 import Foundation
 // Api key and ID for the recipe service.
 struct ApiKey {
-    let id = "5e334cd4"
-    let key = "5c619f1d12371d38505baa42aa7668b4"
+    static let id = "5e334cd4"
+    static let key = "5c619f1d12371d38505baa42aa7668b4"
 }

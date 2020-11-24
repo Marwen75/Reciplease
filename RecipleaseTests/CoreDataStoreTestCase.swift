@@ -14,43 +14,62 @@ import XCTest
 class CoreDataStoreTestCase: XCTestCase {
     
     var coreDataStack: CoreDataStack!
-    var dataStorage: DataStorage!
+    var favoriteRecipeStorage: FavoriteRecipeStorage!
+    var recipe: RecipeModel!
+    var expectation: XCTestExpectation!
 
     override func setUp() {
         super.setUp()
         coreDataStack = TestCoreDataStack()
-        dataStorage = DataStorage(coreDataStack: coreDataStack)
+        favoriteRecipeStorage = FavoriteRecipeStorage(coreDataStack: coreDataStack)
+        recipe = RecipeModel(name: "Recette", image: "image", url: "https://www.hackingwithswit.com", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20)
+        expectation = XCTestExpectation(description: "Wait for queue change.")
     }
     
     override func tearDown() {
         super.tearDown()
-        dataStorage = nil
+        favoriteRecipeStorage = nil
         coreDataStack = nil
+        recipe = nil
+        expectation = nil
     }
     
     func testIfAFavoriteRecipeIsAddedThenTheRecipeShouldAppearInCoreData() {
-        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
-        
-        XCTAssertTrue(dataStorage.favoriteRecipes.count == 1)
-        XCTAssertTrue(dataStorage.favoriteRecipes[0].name == "Recette")
+        favoriteRecipeStorage.addFavorite(recipe: recipe) {
+            XCTAssertTrue(self.favoriteRecipeStorage.favoriteRecipes.count == 1)
+            XCTAssertTrue(self.favoriteRecipeStorage.favoriteRecipes[0].name == "\(self.recipe.name)")
+            self.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.5)
     }
     
     func testIfAFavoriteIsDeletedThenTheRecipeShouldNotAppearInCoreData() {
-        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
-        dataStorage.deleteFavorite(named: "Recette")
+        favoriteRecipeStorage.addFavorite(recipe: recipe) {
+            XCTAssertTrue(self.favoriteRecipeStorage.favoriteRecipes[0].name == "\(self.recipe.name)")
+        }
+        favoriteRecipeStorage.deleteFavorite(named: "\(recipe.name)") {
+            XCTAssertTrue(self.favoriteRecipeStorage.favoriteRecipes.count == 0)
+            self.expectation.fulfill()
+        }
         
-        XCTAssertTrue(dataStorage.favoriteRecipes.count == 0)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     func testIfAFavoriteRecipeAlreadyExistsThenCoreDataShouldFindIt() {
-        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
+        favoriteRecipeStorage.addFavorite(recipe: recipe) {
+            XCTAssertTrue(self.favoriteRecipeStorage.checkForFavoriteRecipe(named: "\(self.recipe.name)"))
+            self.expectation.fulfill()
+        }
         
-        XCTAssertTrue(dataStorage.checkForFavoriteRecipe(named: "Recette"))
+        wait(for: [expectation], timeout: 0.5)
     }
     
     func testSearchingForAFavoriteRecipeThatDoesntExistsThenItShouldReturnFalse() {
-        dataStorage.addFavorite(name: "Recette", ingredients: ["Bread", "Garlic", "Rice"], yield: 2, time: 20, url: "https://www.gloubi.com", image: "image")
+        favoriteRecipeStorage.addFavorite(recipe: recipe) {
+            XCTAssertFalse(self.favoriteRecipeStorage.checkForFavoriteRecipe(named: "Udon"))
+            self.expectation.fulfill()
+        }
         
-        XCTAssertFalse(dataStorage.checkForFavoriteRecipe(named: "Udon"))
+        wait(for: [expectation], timeout: 0.5)
     }
 }

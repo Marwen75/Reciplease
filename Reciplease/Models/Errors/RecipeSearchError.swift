@@ -15,10 +15,7 @@ enum RecipeSearchError: Error {
     case noResults
     
     var errorDescription: String {
-        switch self {
-        case .noIngredients, .noFavorite, .noResults:
-            return "Oups !"
-        }
+        return "Oups !"
     }
     
     var failureReason: String {
